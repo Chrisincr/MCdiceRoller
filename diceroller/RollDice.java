@@ -74,9 +74,9 @@ public class RollDice {
 					vals = Roll(Integer.parseInt(splitted[0]),Integer.parseInt(splitted[1]));
 					messages.add(new ChatComponentText(player.getCommandSenderName() + " is rolling " +argString[0]));		
 
-				} else if(Pattern.matches("\\d+[d]{1}\\d+([\+]{1}\\d+[d]{1}\\d+)*", argString[0])) {
-					String[] splitted = argString[0].split("+")					
-					int numOfDiceTypes = splitted.size
+				} else if(Pattern.matches("\\d+[d]{1}\\d+(\\+{1}\\d+[d]{1}\\d+)*", argString[0])) {
+					String[] splitted = argString[0].split("\\+");					
+					int numOfDiceTypes = splitted.length;
 
 					
 					messages.add(new ChatComponentText(player.getCommandSenderName() + " is rolling " +argString[0]));	
@@ -87,8 +87,8 @@ public class RollDice {
 						vals.addAll(Roll(Integer.parseInt(splitDie[0]),Integer.parseInt(splitDie[1])));						
 					}
 
-				} else if (Pattern.matches("\\d+[d]{1}\\d+([\+]{1}\\d+[d]{1}\\d+)*([\+]{1}\\d+)*", argString[0])) {
-					String[] splitted = argString[0].split("+");					
+				} else if (Pattern.matches("\\d+[d]{1}\\d+(\\+{1}\\d+[d]{1}\\d+)*(\\+{1}\\d+)*", argString[0])) {
+					String[] splitted = argString[0].split("\\+");					
 					int numOfDiceTypes = splitted.length - 1;
 
 					
