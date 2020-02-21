@@ -25,7 +25,7 @@ public class RollDice {
 			vals = (Roll(1,9001)); 
 		}
 		else if (argString[0].equals("a")) {
-			messages.add(new ChatComponentTest(player.getCommandSenderName() + " is rolling with advantage."));
+			messages.add(new ChatComponentText(player.getCommandSenderName() + " is rolling with advantage."));
 			vals = (Roll(2,20));
 				
 			Integer highest = 0;
@@ -44,7 +44,7 @@ public class RollDice {
 			return messages;
 		}
 		else if (argString[0].equals("d")) {
-			messages.add(new ChatComponentTest(player.getCommandSenderName() + " is rolling with disadvantage."));
+			messages.add(new ChatComponentText(player.getCommandSenderName() + " is rolling with disadvantage."));
 			vals = (Roll(2,20));
 				
 			Integer lowest = 20;
@@ -73,9 +73,11 @@ public class RollDice {
 
 					vals = Roll(Integer.parseInt(splitted[0]),Integer.parseInt(splitted[1]));
 					messages.add(new ChatComponentText(player.getCommandSenderName() + " is rolling " +argString[0]));		
+
 				} else if(Pattern.matches("\\d+[d]{1}\\d+([\+]{1}\\d+[d]{1}\\d+)*", argString[0])) {
 					String[] splitted = argString[0].split("+")					
 					int numOfDiceTypes = splitted.size
+
 					
 					messages.add(new ChatComponentText(player.getCommandSenderName() + " is rolling " +argString[0]));	
 					
@@ -84,9 +86,11 @@ public class RollDice {
 						String[] splitDie = splitted[multiroll].split("d");
 						vals.addAll(Roll(Integer.parseInt(splitDie[0]),Integer.parseInt(splitDie[1])));						
 					}
+
 				} else if (Pattern.matches("\\d+[d]{1}\\d+([\+]{1}\\d+[d]{1}\\d+)*([\+]{1}\\d+)*", argString[0])) {
-					String[] splitted = argString[0].split("+")					
-					int numOfDiceTypes = splitted.size - 1
+					String[] splitted = argString[0].split("+");					
+					int numOfDiceTypes = splitted.length - 1;
+
 					
 					messages.add(new ChatComponentText(player.getCommandSenderName() + " is rolling " +argString[0]));	
 					
@@ -95,7 +99,7 @@ public class RollDice {
 						String[] splitDie = splitted[multiroll].split("d");
 						vals.addAll(Roll(Integer.parseInt(splitDie[0]),Integer.parseInt(splitDie[1])));						
 					}
-					vals.add(Integer.parseInt(splitted[splitted.size - 1]));
+					vals.add(Integer.parseInt(splitted[splitted.length - 1]));
 				}
 				else {					
 					messages.add( new ChatComponentText(player.getCommandSenderName() + "Needs to learn to type"));
